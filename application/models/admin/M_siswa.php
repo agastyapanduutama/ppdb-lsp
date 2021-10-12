@@ -8,8 +8,8 @@ class M_siswa extends CI_Model
     {
         parent::__construct();
         $this->table = "t_siswa";
-        $this->column_order = array(null, 'nama_siswa', 'nama_jurusan','nik','nisn','no_hp');
-        $this->column_search = array('nama_siswa', 'nama_jurusan','nik','nisn','no_hp');
+        $this->column_order = array(null, 'nama_siswa', 'nama_jurusan','nik','nisn','no_hp','t_siswa.status');
+        $this->column_search = array('nama_siswa', 'nama_jurusan','nik','nisn','no_hp','t_siswa.status');
         $this->order = array('id' => 'desc');
     }
 
@@ -104,9 +104,23 @@ class M_siswa extends CI_Model
 
     function data_siswa()
     {
-        $this->db->select('*');
-        $this->db->from('t_siswa');
+        $this->db->select('t_siswa.*,t_jurusan.nama_jurusan, t_agama.nama_agama');
+        $this->db->from($this->table);
+        $this->db->join('t_jurusan', 't_jurusan.id = t_siswa.id_jurusan', 'left');
+        $this->db->join('t_agama', 't_agama.id = t_siswa.id_agama', 'left');
+        $this->db->where('status', '4');
         $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    function data_export()
+    {
+        $this->db->select('t_siswa.*,t_jurusan.nama_jurusan, t_agama.nama_agama');
+        $this->db->from($this->table);
+        $this->db->join('t_jurusan', 't_jurusan.id = t_siswa.id_jurusan', 'left');
+        $this->db->join('t_agama', 't_agama.id = t_siswa.id_agama', 'left');
+        $this->db->order_by('nama_siswa', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }

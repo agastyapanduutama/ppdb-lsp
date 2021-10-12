@@ -1,43 +1,36 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-
-<link rel="stylesheet" href="<?= base_url('assets/css/register.css') ?>">
-<section class="h-100 w-100" style="box-sizing: border-box; background-color: #f5f5f5">
+<section class="h-100 w-100" style="box-sizing: border-box;">
 
     <div class="content-4-1 d-flex flex-column align-items-center h-100 flex-lg-row" style="font-family: 'Poppins', sans-serif">
         <div class="position-relative d-none d-lg-block h-100 width-left">
-            <img class="position-absolute img-fluid centered" src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-11.png" alt="" />
+            <img class="position-absolute img-fluid centered" src="<?= base_url('assets/img/password.png') ?>" alt="" />
         </div>
         <div class="d-flex mx-auto align-items-left justify-content-left width-right mx-lg-0">
             <div class="right mx-lg-0 mx-auto">
-                <div class="align-items-center justify-content-center d-lg-none d-flex">
-                    <img class="img-fluid" src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-11.png" alt="" />
-                </div>
-                <h3 class="title-text">Daftar Akun Baru</h3>
+
+                <h3 class="title-text">Ganti Password</h3>
                 <p class="caption-text">
-                    Silakan masukan data sesuai yang di perlukan<br />
                     <!-- registered on the website. -->
                 </p>
-                <form style="margin-top: 1.5rem" action="<?= base_url('siswa/daftar/aksi') ?>" method="post">
-                    <div style="margin-bottom: 1.75rem">
-                        <label for="" class="d-block input-label">Nama Lengkap</label>
-                        <div class="d-flex w-100 div-input">
-                            <svg class="icon" style="margin-right: 1rem" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5 5C3.34315 5 2 6.34315 2 8V16C2 17.6569 3.34315 19 5 19H19C20.6569 19 22 17.6569 22 16V8C22 6.34315 20.6569 5 19 5H5ZM5.49607 7.13174C5.01655 6.85773 4.40569 7.02433 4.13168 7.50385C3.85767 7.98337 4.02427 8.59422 4.50379 8.86823L11.5038 12.8682C11.8112 13.0439 12.1886 13.0439 12.4961 12.8682L19.4961 8.86823C19.9756 8.59422 20.1422 7.98337 19.8682 7.50385C19.5942 7.02433 18.9833 6.85773 18.5038 7.13174L11.9999 10.8482L5.49607 7.13174Z" fill="#CACBCE" />
-                            </svg>
-                            <input class="input-field border-0" type="text" name="nama_siswa" id="" placeholder="Nama Lengkap anda" required />
-                        </div>
-                    </div>
-                    <div style="margin-bottom: 1.75rem">
-                        <label for="" class="d-block input-label">NIK</label>
-                        <div class="d-flex w-100 div-input">
-                            <svg class="icon" style="margin-right: 1rem" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5 5C3.34315 5 2 6.34315 2 8V16C2 17.6569 3.34315 19 5 19H19C20.6569 19 22 17.6569 22 16V8C22 6.34315 20.6569 5 19 5H5ZM5.49607 7.13174C5.01655 6.85773 4.40569 7.02433 4.13168 7.50385C3.85767 7.98337 4.02427 8.59422 4.50379 8.86823L11.5038 12.8682C11.8112 13.0439 12.1886 13.0439 12.4961 12.8682L19.4961 8.86823C19.9756 8.59422 20.1422 7.98337 19.8682 7.50385C19.5942 7.02433 18.9833 6.85773 18.5038 7.13174L11.9999 10.8482L5.49607 7.13174Z" fill="#CACBCE" />
-                            </svg>
-                            <input class="input-field border-0" type="number" name="nik" id="" placeholder="NIK anda digunakan sebagai username" autocomplete="on" required />
-                        </div>
-                    </div>
+                <form style="margin-top: 1.5rem" action="<?= base_url('siswa/profil/pengaturan/perbarui/') ?>" method="post">
+
+                    <?php
+
+                    if ($this->session->flashdata('warning')) {
+                        echo '<div class="alert alert-warning">';
+                        echo $this->session->flashdata('warning');
+                        echo '</div>';
+                    }
+
+                    if ($this->session->flashdata('success')) {
+                        echo '`<div class="alert alert-success">';
+                        echo $this->session->flashdata('success');
+                        echo '</div>';
+                    }
+
+                    ?>
+
                     <div style="margin-top: 1rem">
-                        <label for="" class="d-block input-label">Password</label>
+                        <label for="" class="d-block input-label">Password Baru</label>
                         <div class="d-flex w-100 div-input">
                             <svg class="icon" style="margin-right: 1rem" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M7.81592 4.25974C7.12462 5.48872 7 6.95088 7 8H6C4.34315 8 3 9.34315 3 11V19C3 20.6569 4.34315 22 6 22H18C19.6569 22 21 20.6569 21 19V11C21 9.34315 19.6569 8 18 8L17 7.99998C17 6.95087 16.8754 5.48871 16.1841 4.25973C15.829 3.62845 15.3194 3.05012 14.6031 2.63486C13.8875 2.22005 13.021 2 12 2C10.979 2 10.1125 2.22005 9.39691 2.63486C8.68058 3.05012 8.17102 3.62845 7.81592 4.25974ZM9.55908 5.24026C9.12538 6.01128 9 7.04912 9 8H15C15 7.04911 14.8746 6.01129 14.4409 5.24027C14.2335 4.87155 13.9618 4.57488 13.6 4.36514C13.2375 4.15495 12.729 4 12 4C11.271 4 10.7625 4.15495 10.4 4.36514C10.0382 4.57488 9.76648 4.87155 9.55908 5.24026ZM14 14C14 14.7403 13.5978 15.3866 13 15.7324V17C13 17.5523 12.5523 18 12 18C11.4477 18 11 17.5523 11 17V15.7324C10.4022 15.3866 10 14.7403 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14Z" fill="#CACBCE" />
@@ -52,7 +45,7 @@
                     </div>
 
                     <div style="margin-top: 1rem">
-                        <label for="" class="d-block input-label">Konfirmasi Password</label>
+                        <label for="" class="d-block input-label">Konfirmasi Password Baru</label>
                         <div class="d-flex w-100 div-input">
                             <svg class="icon" style="margin-right: 1rem" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M7.81592 4.25974C7.12462 5.48872 7 6.95088 7 8H6C4.34315 8 3 9.34315 3 11V19C3 20.6569 4.34315 22 6 22H18C19.6569 22 21 20.6569 21 19V11C21 9.34315 19.6569 8 18 8L17 7.99998C17 6.95087 16.8754 5.48871 16.1841 4.25973C15.829 3.62845 15.3194 3.05012 14.6031 2.63486C13.8875 2.22005 13.021 2 12 2C10.979 2 10.1125 2.22005 9.39691 2.63486C8.68058 3.05012 8.17102 3.62845 7.81592 4.25974ZM9.55908 5.24026C9.12538 6.01128 9 7.04912 9 8H15C15 7.04911 14.8746 6.01129 14.4409 5.24027C14.2335 4.87155 13.9618 4.57488 13.6 4.36514C13.2375 4.15495 12.729 4 12 4C11.271 4 10.7625 4.15495 10.4 4.36514C10.0382 4.57488 9.76648 4.87155 9.55908 5.24026ZM14 14C14 14.7403 13.5978 15.3866 13 15.7324V17C13 17.5523 12.5523 18 12 18C11.4477 18 11 17.5523 11 17V15.7324C10.4022 15.3866 10 14.7403 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14Z" fill="#CACBCE" />
@@ -68,18 +61,14 @@
                     <span id='message'></span>
 
                     <button class="btn btn-fill text-white d-block w-100" type="submit">
-                        Daftar Akun Baru
+                        Ganti Password
                     </button>
                 </form>
-                <p class="text-center bottom-caption">
-                    Sudah punya akun?
-                    <span class="green-bottom-caption"><a class="text-decoration-none" href="<?= base_url('user/masuk') ?>">Masuk kesini</a></span>
-                </p>
+
             </div>
         </div>
     </div>
 
-    <script src="<?= base_url() ?>assets/admin//assets/js/core/jquery.3.2.1.min.js"></script>
     <!-- Password toggle -->
     <script>
         function togglePassword() {

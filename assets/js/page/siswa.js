@@ -43,6 +43,11 @@ $(document).ready(function () {
 			{
 				"sClass": "text-center",
 				"targets": [6],
+				"orderable": true
+			},
+			{
+				"sClass": "text-center",
+				"targets": [7],
 				"orderable": false
 			},
 		],

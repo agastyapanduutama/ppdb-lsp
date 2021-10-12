@@ -121,7 +121,7 @@
                             <input required placeholder="No HP/WA anda" type="number" name="no_hp" id="no_hp" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label>Jurusan<span style="color:red">*</span>
+                            <label>Jurusan Diminati<span style="color:red">*</span>
                             </label>
                             <select name="id_jurusan" class="form-control" id="">
                                 <?php foreach ($jurusan as $j) : ?>

@@ -1,6 +1,7 @@
 <div class="card">
     <div class="card-header">
         <a href="<?= base_url('admin/siswa/tambah') ?>" class="btn btn-primary float-right">Tambah Data</a>
+        <a href="<?= base_url('admin/siswa/export') ?>" class="btn btn-success float-right">Export Excel</a>
         <h4 class="card-title"><?= $title ?></h4>
     </div>
     <div class="card-body">
@@ -29,6 +30,7 @@
                         <td>NIK</td>
                         <td>NISN</td>
                         <td>No HP/WA</td>
+                        <td>Status</td>
                         <td>Aksi</td>
                     </tr>
                 </thead>

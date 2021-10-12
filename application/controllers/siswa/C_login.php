@@ -32,20 +32,20 @@ class C_login extends CI_Controller
     {
 
         
-        $user = $this->input->post('email');
+        $user = $this->input->post('nik');
         $pass = $this->input->post('password');
         $where = array(
-            'email' => $user,
+            'nik' => $user,
             'password' => $this->req->acak($pass)
         );
 
         if ($this->login->cek($where) == true) {
             $userData = $this->login->getData();
-            if ($userData->status == 1) {
+            if ($userData->status >= 0) {
                 $session = array(
                     'id_user'   => $userData->id,
-                    'nama_user'  => $userData->nama_pengguna,
-                    'email'     => $userData->email,
+                    'nama_user'  => $userData->nama_siswa,
+                    'nik'     => $userData->nik,
                     'logged_in' => true,
                 );
                 // var_dump($session);
@@ -54,11 +54,11 @@ class C_login extends CI_Controller
             } else {
 
                 // $this->req->print($_POST);
-                $this->session->set_flashdata('warning', "Akun belum di aktivasi silakan Periksa Email anda");
+                $this->session->set_flashdata('warning', "Akun belum di aktivasi silakan Periksa NIK anda");
                 redirect('siswa/masuk', 'refresh');
             }
         } else {
-            $this->session->set_flashdata('warning', "Email atau Password mungkin Salah");
+            $this->session->set_flashdata('warning', "NIK atau Password mungkin Salah");
             redirect('siswa/masuk', 'refresh');
         }
     }
@@ -94,18 +94,18 @@ class C_login extends CI_Controller
             'password' => $this->req->acak($_POST['password'])
         ];
         $data = $this->req->all($custom);
-        $cekEmail = $this->db->get_where('t_pengguna', ['email' => $data['email']])->num_rows();
+        $cekNik = $this->db->get_where('t_siswa', ['nik' => $data['nik']])->num_rows();
 
-        if ($cekEmail > 0) {
-            $this->session->set_flashdata('warning', "Email Sudah pernah digunakan");
+        if ($cekNik > 0) {
+            $this->session->set_flashdata('warning', "NIK Sudah pernah digunakan");
             redirect('siswa/daftar', 'refresh');
         } else {
 
-            $this->db->insert('t_pengguna', $data);
+            $this->db->insert('t_siswa', $data);
             $dataAkhir = $this->db->insert_id();
 
-            $this->session->set_flashdata('success', "Anda Berhasil daftar silakan isi data dibawah ini");
-            redirect('siswa/daftar', 'refresh');
+            $this->session->set_flashdata('success', "Berhasil membuat akun silakan masuk");
+            redirect('siswa/masuk', 'refresh');
 
         }
     }
@@ -118,5 +118,39 @@ class C_login extends CI_Controller
             'konten' => 'siswa/v_success' 
         );
         $this->load->view('templates/template', $data);
+    }
+
+
+    public function gantiPassword()
+    {
+
+
+        $data = array(
+            'css' => 'register',
+            'title' => $_SESSION['nama_user'],
+            'konten' => 'siswa/v_password'
+        );
+
+        $this->load->view('templates/template', $data, FALSE);
+    }
+
+    public function aksiUpdatePassword()
+    {
+        $id = $_SESSION['id_user'];
+        $custom = [
+            'password' => $this->req->acak($_POST['password'])
+        ];
+
+        $data = $this->req->all($custom);
+
+        if ($this->login->update($data, $id) == true) {
+            $this->session->set_flashdata('success', "Berhasil Memperbarui Password");
+            redirect('siswa/profil/pengaturan', 'refresh');
+        } else {
+            $this->session->set_flashdata('warning', "Terjadi kesalahan dalam mengubah data");
+            redirect('siswa/profil/pengaturan', 'refresh');
+        }
+
+        
     }
 }

@@ -43,6 +43,16 @@
                 $button = "
                 <button class='btn btn-danger btn-sm' id='delete' data-id='$idNa' title='Hapus Data'><i class='fas fa-trash-alt'></i></button>
                 <a href='$urlEdit' class='btn btn-warning btn-sm' title='Edit Data'><i class='fas fa-pencil-alt'></i></a>";
+                
+                if ($field->status == '1') {
+                    $status =  "<span style='color:green'>Diterima</span>";
+                }elseif($field->status == '2'){
+                    $status =  "<span style='color:blue'>Cadangan</span>";
+                }elseif($field->status == '3'){
+                    $status =  "Tidak Diterima";
+                }else{
+                    $status =  "<span style='color:red'>Belum di Konfirmasi</span>";
+                }
 
                 $no++;
                 $row = array();
@@ -52,6 +62,7 @@
                 $row[] = $field->nik;
                 $row[] = $field->nisn;
                 $row[] = $field->no_hp;
+                $row[] = $status;
                 $row[] = $button;
                 $data[] = $row;
             }
@@ -63,6 +74,9 @@
                 "data" => $data,
             );
             echo json_encode($output);
+
+            // echo $this->db->last_query();
+            
         }
 
         function get($id)
@@ -184,5 +198,18 @@
                 );
             }
             echo json_encode($msg);
+        }
+
+        public function exportAll()
+        {
+
+            $siswa = $this->siswa->data_export();
+
+            $data = array(
+                'title' => 'export',
+                'isi'  => $siswa
+            );
+
+            $this->load->view('admin/siswa/export', $data, FALSE);
         }
     }

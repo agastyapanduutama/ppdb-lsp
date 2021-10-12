@@ -7,7 +7,7 @@ class C_login extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('M_login', 'login');
+        $this->load->model('admin/M_login', 'login');
     }
 
     public function index()

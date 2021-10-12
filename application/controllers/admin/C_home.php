@@ -22,11 +22,11 @@ class C_home extends CI_Controller
     {
 
         $siswa = $this->siswa->data_siswa();
-
+        
         $data = array(
             'totalsiswa'   => $this->db->get('t_siswa')->num_rows(),
             'listsiswa'    => $siswa,
-            'script'        => 'siswa',
+            // 'script'        => 'siswa',
             'title'         => 'Dashboard PSB',
             'konten'        => 'admin/dashboard'
         );

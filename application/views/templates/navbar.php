@@ -10,6 +10,8 @@
         <link rel="stylesheet" href="<?= base_url('assets/css/footer.css') ?>">
 
 
+
+
         <script src="https://kit.fontawesome.com/f1edfd5750.js" crossorigin="anonymous"></script>
 
         <?= (isset($css)) ? "<link rel='stylesheet' href='" . base_url() . "assets/css/" . $css . ".css'>" : '' ?>
@@ -30,9 +32,11 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
-                                    <a class="nav-link <?php if ($this->uri->segment(1)== 'beranda') {echo "active";} ?>" aria-current="page" href="<?= base_url('beranda') ?>">Beranda</a>
+                                    <a class="nav-link <?php if ($this->uri->segment(1) == 'beranda') {
+                                                            echo "active";
+                                                        } ?>" aria-current="page" href="<?= base_url('beranda') ?>">Beranda</a>
                                 </li>
-                                
+
 
                             </ul>
                             <?php if (empty($_SESSION['logged_in'])) : ?>
